@@ -30,7 +30,7 @@ while true; do
     if [ "$pos" -eq 0 ]; then
         break
     fi
-    cmd="blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid} -num_threads=24"
+    cmd='blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid} -num_threads=24'
     echo $cmd
     sed -i "s/verbose */verbose ${cmd}/g" ./submit_blast.sh
     
