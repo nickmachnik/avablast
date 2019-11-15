@@ -15,7 +15,7 @@
 #SBATCH --time=2:00:00
 #
 #Define the amount of RAM used by your job in GigaBytes
-#SBATCH --mem16Gb
+#SBATCH --mem 16Gb
 #
 ####SBATCH --partition=bigtb
 #SBATCH --partition=bigmem
