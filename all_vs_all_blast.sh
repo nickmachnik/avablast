@@ -34,7 +34,7 @@ while true; do
     echo $cmd
     sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
     sed -i "s@job-name=.*@job-name=${currid}_blast@" ./submit_blast.sh
-    sed -i "s@log/*@log/${currid}@" ./submit_blast.sh
+    sed -i "s@log/.*@log/${currid}@" ./submit_blast.sh
     
     # time blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids
 done
