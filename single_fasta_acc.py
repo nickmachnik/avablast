@@ -11,10 +11,10 @@ def main():
         Usage: all_vs_all_blastp.py <path to fasta file> <last index>
     """
     header, seq, position = get_next_fasta_entry(sys.argv[1], int(sys.argv[2]))
-    print(header, seq, position)
-    with open('neg_seqids', 'a') as fout:
+    print(position)
+    with open('./temp/neg_seqids', 'a') as fout:
         fout.write('>' + header + '\n')
-    with open('curr.fasta', 'w') as fout:
+    with open('./temp/curr.fasta', 'w') as fout:
         fout.write('>' + header + '\n')
         fout.write(seq + '\n')
 
