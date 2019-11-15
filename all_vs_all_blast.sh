@@ -3,6 +3,12 @@
 DB=$1
 FASTA=$2
 
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+    exit 1
+fi
+
 mkdir temp
 mkdir out
 echo -n > ./temp/neg_seqids
