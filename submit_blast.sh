@@ -5,7 +5,7 @@
 #-------------------------------------------------------------
 #
 #SBATCH --job-name=PROT_blast
-#SBATCH --output=logs/PROT.log
+#SBATCH --output=log/PROT.log
 #
 #Number of cores
 #SBATCH -c 24
