@@ -17,6 +17,7 @@ fi
 
 mkdir temp
 mkdir out
+mkdir log
 echo -n > ./temp/neg_seqids
 
 pos=0
@@ -29,7 +30,9 @@ while true; do
     if [ "$pos" -eq 0 ]; then
         break
     fi
-    blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid} -num_threads=24
+    cmd='blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid} -num_threads=24'
+    sed -i "s/srun --cpu_bind=verbose */${cmd}/g" ./submit_blast.sh
+    
     # time blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids
 done
 
