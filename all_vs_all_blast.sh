@@ -34,7 +34,10 @@ while true; do
     sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
     sed -i "s@job-name=.*@job-name=${currid}_blast@" ./submit_blast.sh
     sed -i "s@log/.*@log/${currid}@" ./submit_blast.sh
-    
+    while [ `squeue -u nmachnik | wc -l` -ge 100 ]; do
+        sleep 10
+    done
+    sbatch submit_blast.sh
     # time blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids
 done
 
