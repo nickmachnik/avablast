@@ -5,7 +5,14 @@ FASTA=$2
 
 if [ $# -eq 0 ]
   then
-    echo "No arguments supplied"
+    echo "No arguments supplied.
+    Usage:
+        all_vs_all_blast.sh <blast db name> <fasta path>
+
+    where
+
+        fasta path: file from which db was created
+    "
     exit 1
 fi
 
