@@ -9,8 +9,7 @@ if [ $# -eq 0 ]
     Usage:
         all_vs_all_blast.sh <blast db name> <fasta path>
 
-    where
-
+    Where:
         fasta path: file from which db was created
     "
     exit 1
@@ -27,10 +26,10 @@ while true; do
     currid=`grep '^>' ./temp/curr.fasta`
     currid="${currid//>}"
     # submit blastp job
-    blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid}
     if [ "$pos" -eq 0 ]; then
         break
     fi
+    blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid}
 done
 
 
