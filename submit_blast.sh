@@ -43,4 +43,4 @@ module load ncbi-blast
 #
 #
 #run the respective binary through SLURM's srun
-srun --cpu_bind=verbose C
+srun --cpu_bind=verbose CMD
