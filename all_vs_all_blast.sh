@@ -32,7 +32,7 @@ while true; do
     fi
     cmd='blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids -out ./out/${currid} -num_threads=24'
     echo $cmd
-    sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
+    sed -i "s@verbose.*@BALOOON ${cmd}@" ./submit_blast.sh
     
     # time blastp -outfmt 6 -query ./temp/curr.fasta -db ${DB} -negative_seqidlist ./temp/neg_seqids
 done
