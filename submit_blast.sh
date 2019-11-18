@@ -39,7 +39,7 @@ unset SLURM_EXPORT_ENV
 #
 #load the respective software module you intend to use
 #module load python/3.6.6
-module load ncbi-blast
+module load ncbi-blast/2.9.0+
 #
 #
 #run the respective binary through SLURM's srun
