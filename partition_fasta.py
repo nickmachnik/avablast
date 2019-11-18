@@ -17,16 +17,14 @@ def main():
     partition = 0
     fout = None
     for parsed, (h, s) in enumerate(fasta_parser):
-        # print(parsed, parsed % partition_size)
         if parsed % partition_size == 0:
-            partition += 1
-            # print('zerooo')
-            if fout is not None:
-                fout.close()
-            fout = open('./temp/partition_{}.fasta'.format(partition), 'w')
+            if partition != n_partitions:
+                partition += 1
+                if fout is not None:
+                    fout.close()
+                fout = open('./temp/partition_{}.fasta'.format(partition), 'w')
         fout.write(h + '\n')
         fout.write(s + '\n')
-
     fout.close()
 
 
