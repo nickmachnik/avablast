@@ -12,10 +12,10 @@
 #
 #Define the number of hours the job should run. 
 #Maximum runtime is limited to 10 days, ie. 240 hours
-#SBATCH --time=2:00:00
+#SBATCH --time=24:00:00
 #
 #Define the amount of RAM used by your job in GigaBytes
-#SBATCH --mem 16Gb
+#SBATCH --mem 32Gb
 #
 ####SBATCH --partition=bigtb
 #SBATCH --partition=bigmem
