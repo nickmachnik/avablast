@@ -17,11 +17,6 @@ if [ $# -eq 0 ]
     exit 1
 fi
 
-if [ ! -d ./temp ]; then
-    mkdir temp
-fi
-rm temp/*
-
 if [ ! -d ./log ]; then
     mkdir log
 fi
@@ -30,12 +25,17 @@ if [ ! -d ${OUT_DIR} ]; then
     mkdir ${OUT_DIR}
 fi
 
-./partition_fasta.py ${FASTA} `grep -c "^>" ${FASTA}` ${N_JOBS}
+if [ ! -d ${OUT_DIR}/temp ]; then
+    mkdir ${OUT_DIR}/temp
+fi
+rm ${OUT_DIR}/temp/*
+
+./partition_fasta.py ${FASTA} ${OUT_DIR}/temp `grep -c "^>" ${FASTA}` ${N_JOBS}
 
 for i in $(seq ${N_JOBS});
 do
     # submit blastp job
-    cmd="blastp -outfmt 6 -query ./temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/${i} -num_threads=24"
+    cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/${i} -num_threads=24"
     sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
     sed -i "s@job-name=.*@job-name=${i}_blast@" ./submit_blast.sh
     sed -i "s@log/.*@log/${i}@" ./submit_blast.sh

@@ -5,12 +5,13 @@ import gzip
 
 
 def main():
-    assert len(sys.argv) == 4, """
+    assert len(sys.argv) == 5, """
     Usage:
-        partition_fasta.py <path to fasta> <number of fasta entries in input> <number of partitions>
+        partition_fasta.py <path to fasta> <path to temp> <number of fasta entries in input> <number of partitions>
     """
     fasta_parser = parse_fasta(sys.argv[1])
-    fasta_len, n_partitions = [int(e) for e in sys.argv[2:]]
+    output_path = sys.argv[2]
+    fasta_len, n_partitions = [int(e) for e in sys.argv[3:]]
     
     partition_size = int(fasta_len / n_partitions)
     
@@ -22,7 +23,7 @@ def main():
                 partition += 1
                 if fout is not None:
                     fout.close()
-                fout = open('./temp/partition_{}.fasta'.format(partition), 'w')
+                fout = open('{}/partition_{}.fasta'.format(output_path, partition), 'w')
         fout.write(h + '\n')
         fout.write(s + '\n')
     fout.close()
