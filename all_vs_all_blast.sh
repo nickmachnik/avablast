@@ -45,5 +45,5 @@ do
     sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
     sed -i "s@job-name=.*@job-name=${i}_blast@" ./submit_blast.sh
     sed -i "s@#SBATCH --output=.*@#SBATCH --output=${OUT_DIR}/log/${i}@" ./submit_blast.sh
-    # sbatch submit_blast.sh
+    sbatch submit_blast.sh
 done
