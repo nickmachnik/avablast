@@ -33,6 +33,7 @@ def parse_fasta(path):
     """
     Return (header, sequence) in fasta.
     """
+    header = None
     if path.endswith('.gz'):
         o, mode = gzip.open, 'rt'
     else:
@@ -42,12 +43,12 @@ def parse_fasta(path):
         seq = ''
         for line in fin:
             if line.startswith('>'):
-                header = line.strip()
                 if first_header:
                     yield (header, seq)
                     seq = ''
                 else:
                     first_header = True
+                header = line.strip()
             else:
                 seq += line.strip()
         yield (header, seq)
