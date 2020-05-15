@@ -12,9 +12,9 @@ def main():
     fasta_parser = parse_fasta(sys.argv[1])
     output_path = sys.argv[2]
     fasta_len, n_partitions = [int(e) for e in sys.argv[3:]]
-    
+
     partition_size = int(fasta_len / n_partitions)
-    
+
     partition = 0
     fout = None
     for parsed, (h, s) in enumerate(fasta_parser):
@@ -23,7 +23,8 @@ def main():
                 partition += 1
                 if fout is not None:
                     fout.close()
-                fout = open('{}/partition_{}.fasta'.format(output_path, partition), 'w')
+                fout = open('{}/partition_{}.fasta'.format(
+                    output_path, partition), 'w')
         fout.write(h + '\n')
         fout.write(s + '\n')
     fout.close()
