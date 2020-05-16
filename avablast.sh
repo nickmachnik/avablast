@@ -17,28 +17,28 @@ if [ $# -eq 0 ]
     exit 1
 fi
 
-if [ ! -d ${OUT_DIR} ]; then
-    mkdir ${OUT_DIR}
+if [ ! -d "${OUT_DIR}" ]; then
+    mkdir "${OUT_DIR}"
 fi
 
-if [ ! -d ${OUT_DIR}/results ]; then
-    mkdir ${OUT_DIR}/results
+if [ ! -d "${OUT_DIR}"/results ]; then
+    mkdir "${OUT_DIR}"/results
 fi
-rm ${OUT_DIR}/results/*
+rm "${OUT_DIR}"/results/*
 
-if [ ! -d ${OUT_DIR}/temp ]; then
-    mkdir ${OUT_DIR}/temp
+if [ ! -d "${OUT_DIR}"/temp ]; then
+    mkdir "${OUT_DIR}"/temp
 fi
-rm ${OUT_DIR}/temp/*
+rm "${OUT_DIR}"/temp/*
 
-if [ ! -d ${OUT_DIR}/log ]; then
-    mkdir ${OUT_DIR}/log
+if [ ! -d "${OUT_DIR}"/log ]; then
+    mkdir "${OUT_DIR}"/log
 fi
-rm ${OUT_DIR}/log/*
+rm "${OUT_DIR}"/log/*
 
-./partition_fasta.py ${FASTA} ${OUT_DIR}/temp `grep -c "^>" ${FASTA}` ${N_JOBS}
+./partition_fasta.py "${FASTA}" "${OUT_DIR}"/temp "$(grep -c "^>" "${FASTA}")" "${N_JOBS}"
 
-for i in $(seq ${N_JOBS});
+for i in $(seq "${N_JOBS}");
 do
     # submit blastp job
     cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=24"
