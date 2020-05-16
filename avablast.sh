@@ -4,6 +4,7 @@ DB=$1
 FASTA=$2
 N_JOBS=$3
 OUT_DIR=$4
+NUM_THREADS=$5
 
 if [ $# -eq 0 ]
   then
@@ -41,7 +42,7 @@ rm "${OUT_DIR}"/log/*
 for i in $(seq "${N_JOBS}");
 do
     # submit blastp job
-    cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=24"
+    cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=/${NUM_THREADS}"
     sed -i "s@verbose.*@verbose ${cmd}@" ./submit_blast.sh
     sed -i "s@job-name=.*@job-name=${i}_blast@" ./submit_blast.sh
     sed -i "s@#SBATCH --output=.*@#SBATCH --output=${OUT_DIR}/log/${i}@" ./submit_blast.sh
