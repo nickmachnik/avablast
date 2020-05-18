@@ -44,7 +44,7 @@ do
     cp "$BASELOC"/submit_blast.sh "$JOB_SCRIPT"
     
     # submit blastp job
-    cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=/${NUM_THREADS}"
+    cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=${NUM_THREADS}"
     sed -i "s@verbose.*@verbose ${cmd}@" "$JOB_SCRIPT"
     sed -i "s@job-name=.*@job-name=${i}_blast@" "$JOB_SCRIPT"
     sed -i "s@#SBATCH --output=.*@#SBATCH --output=${OUT_DIR}/log/${i}@" "$JOB_SCRIPT"
