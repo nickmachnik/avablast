@@ -19,7 +19,7 @@ if [ $# -ne 5 ]
 fi
 
 # get the scripts location
-BASELOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+BASELOC="$(dirname "$(readlink -f "$0")")"
 
 if [ ! -d "${OUT_DIR}" ]; then
     mkdir "${OUT_DIR}"
