@@ -35,7 +35,7 @@ do
 done
 
 # partition the input fasta in equally sized chunks
-./partition_fasta.py "${FASTA}" "${OUT_DIR}"/temp "$(grep -c "^>" "${FASTA}")" "${N_JOBS}"
+"$BASELOC"/partition_fasta.py "${FASTA}" "${OUT_DIR}"/temp "$(grep -c "^>" "${FASTA}")" "${N_JOBS}"
 
 for i in $(seq "${N_JOBS}");
 do
