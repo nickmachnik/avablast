@@ -13,7 +13,7 @@ Simply clone this repo:
 git clone https://github.com/nickmachnik/avablast
 ```
 
-For convenience, you can add the `avablast.sh ` to your PATH:
+For convenience, you can add the `avablast.sh ` to your PATH by adding this to your `~/.bashrc`:
 ```
 export PATH="[DIRECTORY YOU CLONED AVABLAST TO]:$PATH"
 ```
