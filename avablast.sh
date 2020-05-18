@@ -48,5 +48,6 @@ do
     sed -i "s@verbose.*@verbose ${cmd}@" "$JOB_SCRIPT"
     sed -i "s@job-name=.*@job-name=${i}_blast@" "$JOB_SCRIPT"
     sed -i "s@#SBATCH --output=.*@#SBATCH --output=${OUT_DIR}/log/${i}@" "$JOB_SCRIPT"
+    sed -i "s@#SBATCH -c 24.*@#SBATCH -c ${NUM_THREADS}@" "$JOB_SCRIPT"
     sbatch "$JOB_SCRIPT"
 done
