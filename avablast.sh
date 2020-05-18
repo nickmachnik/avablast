@@ -3,14 +3,14 @@
 DB=$1
 FASTA=$2
 N_JOBS=$3
-OUT_DIR=$4
-NUM_THREADS=$5
+NUM_THREADS=$4
+OUT_DIR=$5
 
-if [ $# -eq 0 ]
+if [ $# -ne 5 ]
   then
     echo "No arguments supplied.
     Usage:
-        all_vs_all_blast.sh <blast db name> <fasta path> <number of single jobs to run> <output directory>
+        all_vs_all_blast.sh <blast db name> <fasta path> <number of single jobs to run> <number of threads per job> <output directory> 
 
     Where:
         fasta path: file from which db was created
@@ -20,8 +20,6 @@ fi
 
 # get the scripts location
 BASELOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-exit 1
 
 if [ ! -d "${OUT_DIR}" ]; then
     mkdir "${OUT_DIR}"
