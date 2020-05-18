@@ -4,13 +4,14 @@ DB=$1
 FASTA=$2
 N_JOBS=$3
 NUM_THREADS=$4
-OUT_DIR=$5
+RAM_GB=$5
+OUT_DIR=$6
 
-if [ $# -ne 5 ]
+if [ $# -ne 6 ]
   then
     echo "No arguments supplied.
     Usage:
-        all_vs_all_blast.sh <blast db name> <fasta path> <number of single jobs to run> <number of threads per job> <output directory> 
+        all_vs_all_blast.sh <blast db name> <fasta path> <number of single jobs to run> <number of threads per job> <RAM in Gb per job> <output directory> 
 
     Where:
         fasta path: file from which db was created
@@ -49,5 +50,6 @@ do
     sed -i "s@job-name=.*@job-name=${i}_blast@" "$JOB_SCRIPT"
     sed -i "s@#SBATCH --output=.*@#SBATCH --output=${OUT_DIR}/log/${i}@" "$JOB_SCRIPT"
     sed -i "s@#SBATCH -c 24.*@#SBATCH -c ${NUM_THREADS}@" "$JOB_SCRIPT"
+    sed -i "s@#SBATCH --mem 32Gb.*@#SBATCH --mem ${RAM_GB}Gb@" "$JOB_SCRIPT"
     sbatch "$JOB_SCRIPT"
 done
