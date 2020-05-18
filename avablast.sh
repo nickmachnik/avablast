@@ -41,7 +41,7 @@ for i in $(seq "${N_JOBS}");
 do
     JOB_SCRIPT="$OUT_DIR"/jobs/submit_"$i".sh
     # make sbatch script copy for this job
-    cp "$BASELOC"/submit_bash.sh "$JOB_SCRIPT"
+    cp "$BASELOC"/submit_blast.sh "$JOB_SCRIPT"
     
     # submit blastp job
     cmd="blastp -outfmt 6 -query ${OUT_DIR}/temp/partition_${i}.fasta -db ${DB} -out ${OUT_DIR}/results/${i} -num_threads=/${NUM_THREADS}"
